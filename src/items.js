@@ -24,7 +24,7 @@ export const CODES = {
 const items = [
   { path: ['A'], price: 1500 },
   { path: ['A', 'd'], price: 1800 },
-  { path: ['A', 'BIG'], price: 2400 },
+  { path: ['A', 'BIG'], price: 2200 },
 
   { path: ['C'], price: 2200 },
   { path: ['C', 'd'], price: 2400 },
@@ -37,14 +37,14 @@ const items = [
   { path: ['Fw'], price: 2600 },
   { path: ['Fw', 'BIG'], price: 3000 },
 
-  { path: ['E'], price: 2600 },
-  { path: ['E', 'd'], price: 2600 },
+  { path: ['E'], price: 1500 },
+  { path: ['E', 'd'], price: 1800 },
 
   { path: ['ICE'], price: 2200 },
   { path: ['ICE', 'd'], price: 2400 },
 
   { path: ['Hc'], price: 2000 },
-  { path: ['Hc', 'BIG'], price: 2000 },
+  { path: ['Hc', 'BIG'], price: 2400 },
 
   { path: ['Cc'], price: 2400 },
   { path: ['Cc', 'd'], price: 2600 },
@@ -55,6 +55,7 @@ const items = [
 ]
 items.forEach(item => {
   item.pathLabels = item.path.map(a => CODES[a])
+  item.priceRands = `R ${Math.floor(item.price / 100)}`
 })
 
 export const fromPath = (path) => {

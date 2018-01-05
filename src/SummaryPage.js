@@ -55,7 +55,9 @@ export class SummaryPage extends React.Component {
           ) : (
             <List>
               {map(order, (count, itemPath) => {
-                console.log("itemPath", itemPath)
+
+                if(!count)
+                  return null
 
                 const item = items.find(a => a.path == itemPath)
                 const label = item.pathLabels.join(' ')

@@ -51,9 +51,14 @@ export class ItemDetailSelection extends React.Component {
 
                 <Grid container >
                   <Grid item xs>
-
                     <Button raised className={classes.addButton} onClick={(e) => onAddItem(e, item)}>
-                      {item.pathLabels[0]} - {item.pathLabels.slice(1).join(' ')} <b>{orderCount}</b>
+                      {item.pathLabels[0]} {" "}
+                      {item.pathLabels.slice(1).join(' ')} -
+                      {" "}
+                      (<b> {orderCount}</b>)
+                      {" "}
+                      <b>x {item.priceRands}</b>
+
                     </Button>
                   </Grid>
 
