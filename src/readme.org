@@ -1,0 +1,39 @@
+* Coffee POS for Harkerville Market
+** Stories
+*** As a user I need to add several coffee items to an order
+In order to collect info on what I've sold for analysis
+*** As a user I need to use an ergonomic way to add items
+In order for it to be fast, so that I can do it in a rush.
+( If its slow it may be unusable )
+*** As a user I need to remove items from an order
+In order to accomodate people who change their mind
+*** As a user I need to see the total price and the list of items
+In order to confirm my math, and allow non-math people to do the same
+*** As a user I want my data persisted
+In order to review later
+*** As a user I want to be able to export my data
+To review in a different system
+** Views
+... [ previous orders ] => [ order ] => (next order)
+[ order ] => [order + item modify] => [ order ]
+order
+- topbar
+- list of item-classes
+- view of item-summary
+
+** Actions
+AddItemToOrder
+RemoveItemFromOrder
+
+previousOrder
+nextOrder
+
+syncOrderIds ( creating a new order, does not have a canoncial id until the servers says it does )
+
+** Data
+EventSource: [Event]
++Event: AddItemToOrder | RemoveItemFromOrder
+AddItemToOrder: Order + Item
+RemoveItemFromOrder: Order + Item
++Order: ID
++Item: AmerS | AmerD | AmerB | CappS | ...

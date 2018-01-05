@@ -1,0 +1,7 @@
+.OrderInput > .stack {
+  display: block;
+}
+
+.OrderInput {
+  float: left;
+}

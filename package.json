@@ -3,15 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash": "^4.17.4",
+    "material-ui": "^1.0.0-beta.26",
+    "material-ui-icons": "^1.0.0-beta.17",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
-    "react-scripts": "1.0.10"
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.0.10",
+    "redux": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "docker": "docker build -t ponelat/coffee-pos . && docker push ponelat/coffee-pos",
+    "deploy": "npm run build && npm run docker",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
