@@ -1,32 +1,32 @@
 [
-  { "path": ['A'], "price": 1500 },
-  { "path": ['A', 'd'], "price": 1800 },
-  { "path": ['A', 'BIG'], "price": 2200 },
+  { "path": ["A"], "price": 1500 },
+  { "path": ["A", "d"], "price": 1800 },
+  { "path": ["A", "BIG"], "price": 2200 },
 
-  { "path": ['C'], "price": 2200 },
-  { "path": ['C', 'd'], "price": 2400 },
-  { "path": ['C', 'BIG'], "price": 2600 },
+  { "path": ["C"], "price": 2200 },
+  { "path": ["C", "d"], "price": 2400 },
+  { "path": ["C", "BIG"], "price": 2600 },
 
-  { "path": ['L'], "price": 2200 },
-  { "path": ['L', 'd'], "price": 2400 },
-  { "path": ['L', 'BIG'], "price": 2600 },
+  { "path": ["L"], "price": 2200 },
+  { "path": ["L", "d"], "price": 2400 },
+  { "path": ["L", "BIG"], "price": 2600 },
 
-  { "path": ['Fw'], "price": 2600 },
-  { "path": ['Fw', 'BIG'], "price": 3000 },
+  { "path": ["Fw"], "price": 2600 },
+  { "path": ["Fw", "BIG"], "price": 3000 },
 
-  { "path": ['E'], "price": 1500 },
-  { "path": ['E', 'd'], "price": 1800 },
+  { "path": ["E"], "price": 1500 },
+  { "path": ["E", "d"], "price": 1800 },
 
-  { "path": ['ICE'], "price": 2200 },
-  { "path": ['ICE', 'd'], "price": 2400 },
+  { "path": ["ICE"], "price": 2200 },
+  { "path": ["ICE", "d"], "price": 2400 },
 
-  { "path": ['Hc'], "price": 2000 },
-  { "path": ['Hc', 'BIG'], "price": 2400 },
+  { "path": ["Hc"], "price": 2000 },
+  { "path": ["Hc", "BIG"], "price": 2400 },
 
-  { "path": ['Cc'], "price": 2400 },
-  { "path": ['Cc', 'd'], "price": 2600 },
-  { "path": ['Cc', 'BIG'], "price": 2800 },
+  { "path": ["Cc"], "price": 2400 },
+  { "path": ["Cc", "d"], "price": 2600 },
+  { "path": ["Cc", "BIG"], "price": 2800 },
 
-  { "path": ['T'], "price": 1500 },
-  { "path": ['T', 'BIG'], "price": 1800 },
+  { "path": ["T"], "price": 1500 },
+  { "path": ["T", "BIG"], "price": 1800 },
 ]
