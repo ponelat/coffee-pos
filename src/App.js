@@ -12,14 +12,12 @@ import Topbar from './Topbar.js'
 import Reboot from 'material-ui/Reboot'
 import Footer from './Footer.js'
 import SummaryPage from './SummaryPage.js'
-import Items from './items'
-import {loadOrders,saveOrders,exportOrders} from './storage'
+import {ensureItems} from './items'
+import {loadOrders,saveOrders,exportOrders, clearOrders} from './storage'
 
 function sumVals(obj) {
   return Object.keys(obj).reduce((acc, key) => acc + obj[key])
 }
-
-
 
 const styles = theme => ({
   root: {
@@ -36,11 +34,23 @@ class App extends Component {
 
   constructor(props,context) {
     super(props,context)
+    const orders = loadOrders()
     this.state = {
-      currentOrderIndex: 0,
+      currentOrderIndex: orders.length,
       summaryPage: false,
-      orders: loadOrders()
+      orders,
+      items: null,
+      loadingItems: true
     }
+
+    ensureItems()
+      .then(({ Items }) => {
+        this.setState({items: Items, loadingItems: false})
+      })
+      .catch(err => {
+        this.setState({ loadingItems: false, err: err+''})
+      })
+
   }
 
   onItemSelect = (rootCode) => {
@@ -86,9 +96,31 @@ class App extends Component {
     }
   }
 
+  onFirst = () => {
+    this.setState({
+      currentOrderIndex: 0,
+      summaryPage: false
+    })
+  }
+
+  onLast = () => {
+    this.setState( state => ({
+      currentOrderIndex: state.orders.length - 1,
+      summaryPage: false
+    }))
+  }
+
+  onClearOrders = () => {
+    this.setState({
+      orders: [{}],
+      currentOrderIndex: 0,
+      summaryPage: false
+    })
+  }
+
   onAddItem = (e, item) => {
     this.setState(state => {
-      const order = state.orders[state.currentOrderIndex]
+      const order = state.orders[state.currentOrderIndex] = state.orders[state.currentOrderIndex] || {}
       order[item.path] = (order[item.path] || 0) + 1
       return state
     })
@@ -125,24 +157,38 @@ class App extends Component {
   }, 1000)
 
   render() {
-    const { currentOrderIndex, orders, summaryPage } = this.state
+    const { items, loadingItems, err, currentOrderIndex, orders, summaryPage } = this.state
     const { classes } = this.props
 
+    if(loadingItems || !items) {
+      return (
+        <div>
+          Loading items...
+          {err ? (
+            <pre>
+              {JSON.stringify(err, null, 2)}
+            </pre>
+          ) : null}
+        </div>
+      )
+    }
+
     const currentOrder = orders[currentOrderIndex] || {}
+
 
     return (
       <div className={classes.root}>
         <Reboot/>
-        <Topbar exportOrders={exportOrders} currentOrderIndex={currentOrderIndex} order={currentOrder} />
+        <Topbar exportOrders={exportOrders} onClearOrders={this.onClearOrders} currentOrderIndex={currentOrderIndex} order={currentOrder} />
         <Grid container direction="column" spacing={24}>
           <Grid item xs>
             {summaryPage ? (
-              <SummaryPage order={currentOrder} currentOrderIndex={currentOrderIndex} items={Items}/>
+              <SummaryPage order={currentOrder} currentOrderIndex={currentOrderIndex} items={items}/>
             ) : (
-              <ItemSelection onAddItem={this.onAddItem} onRemoveItem={this.onRemoveItem} order={currentOrder} items={Items}/>
+              <ItemSelection onAddItem={this.onAddItem} onRemoveItem={this.onRemoveItem} order={currentOrder} items={items}/>
             )}
           </Grid>
-          <Footer onNext={this.onNext} onPrevious={this.onPrevious}/>
+          <Footer onFirst={this.onFirst} onLast={this.onLast} onNext={this.onNext} onPrevious={this.onPrevious}/>
         </Grid>
       </div>
     );

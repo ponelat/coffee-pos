@@ -20,6 +20,9 @@ const styles = (theme) => ({
     justifyItems: 'space-between',
   },
   flex: {
+    flex: 4,
+  },
+  flexSmall: {
     flex: 1,
   },
   menuButton: {
@@ -38,9 +41,10 @@ export class Footer extends React.Component {
 
   render() {
 
-    const { classes, onNext, onPrevious } = this.props
+    const { classes, onNext, onPrevious, onFirst, onLast } = this.props
     return (
       <Toolbar className={classes.root}>
+        <Button onClick={onLast} className={classes.flexSmall} color="contrast">Last</Button>
         <Button onClick={onPrevious} className={classes.flex} color="contrast">Previous</Button>
         <Button onClick={onNext} className={classes.flex} color="contrast">Next</Button>
       </Toolbar>

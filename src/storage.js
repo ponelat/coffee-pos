@@ -6,6 +6,10 @@ export const loadOrders = () => {
   return JSON.parse(window.localStorage.getItem('orders') || "[{}]")
 }
 
+export const clearOrders = () => {
+  return window.localStorage.setItem('orders', '[{}]')
+}
+
 export const exportOrders = () => {
   const orders = JSON.parse(window.localStorage.getItem('orders'))
   downloadJson(orders, `orders-${orders.length - 1}.json`)

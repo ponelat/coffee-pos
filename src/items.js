@@ -1,65 +1,37 @@
 import isEqual from 'lodash/isEqual'
 import reduce from 'lodash/reduce'
+import localData from './items.json'
 
-export const CODES = {
-  NORMAL: 'Normal',
+export var CODES = localData.CODES
+export var Items = localData.items
+var fetchedRemoteItems = false
 
-  A: 'Americano',
-  C: 'Cappucino',
-  L: 'Latte',
-  E: 'Espresso',
-  Fw: 'Flat White',
-  Hc: 'Hot Choc',
-  Cc: 'Chococcino',
-  ICE: 'Ice Coffee',
-  T: 'Tea',
-
-  Rooi: 'Rooibos',
-  Five: 'Five Roses',
-  d: 'Double-shot',
-  s: 'Single-shot',
-  BIG: 'Big',
+export const ensureItems = () => {
+  if(fetchedRemoteItems) {
+    return Promise.resolve({Items, CODES})
+  }
+  return fetch('https://rawgit.com/ponelat/coffee-pos/master/src/items.json')
+    .then(a => a.json())
+    .then(setItems)
 }
 
-const items = [
-  { path: ['A'], price: 1500 },
-  { path: ['A', 'd'], price: 1800 },
-  { path: ['A', 'BIG'], price: 2200 },
+function setItems(data) {
+  console.log("data", data)
 
-  { path: ['C'], price: 2200 },
-  { path: ['C', 'd'], price: 2400 },
-  { path: ['C', 'BIG'], price: 2600 },
+  data.items.forEach(item => {
+    item.pathLabels = item.path.map(a => CODES[a])
+    item.priceRands = `R ${Math.floor(item.price / 100)}`
+  })
 
-  { path: ['L'], price: 2200 },
-  { path: ['L', 'd'], price: 2400 },
-  { path: ['L', 'BIG'], price: 2600 },
+  Items = data.items
+  CODES = data.CODES
 
-  { path: ['Fw'], price: 2600 },
-  { path: ['Fw', 'BIG'], price: 3000 },
+  return {Items,CODES}
+}
 
-  { path: ['E'], price: 1500 },
-  { path: ['E', 'd'], price: 1800 },
-
-  { path: ['ICE'], price: 2200 },
-  { path: ['ICE', 'd'], price: 2400 },
-
-  { path: ['Hc'], price: 2000 },
-  { path: ['Hc', 'BIG'], price: 2400 },
-
-  { path: ['Cc'], price: 2400 },
-  { path: ['Cc', 'd'], price: 2600 },
-  { path: ['Cc', 'BIG'], price: 2800 },
-
-  { path: ['T'], price: 1500 },
-  { path: ['T', 'BIG'], price: 1800 },
-]
-items.forEach(item => {
-  item.pathLabels = item.path.map(a => CODES[a])
-  item.priceRands = `R ${Math.floor(item.price / 100)}`
-})
 
 export const fromPath = (path) => {
-  return items.find(a => a.path == path)
+  return Items.find(a => a.path == path)
 }
 
 export const totalDrinks = (order) => {
@@ -78,4 +50,5 @@ export const totalRand = (order) => {
   return `R ${totalR}`
 }
 
-export default items
+
+export default ensureItems
