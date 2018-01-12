@@ -50,5 +50,15 @@ export const totalRand = (order) => {
   return `R ${totalR}`
 }
 
+export const countRootItems = (order, path) => {
+  return reduce(order, (acc, count, itemPath) => {
+    if(path == itemPath || itemPath.startsWith(path +',')) {
+      return acc + count
+    }
+
+    return acc
+  },0)
+}
+
 
 export default ensureItems

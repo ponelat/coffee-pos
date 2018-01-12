@@ -30,7 +30,7 @@ export class ItemSelection extends React.Component {
     return (
       <Grid container direction="column" spacing={24}>
         <Grid item xs>
-          <ItemRootSelection items={items} onSelect={this.onRootSelected}/>
+          <ItemRootSelection items={items} onSelect={this.onRootSelected} order={order}/>
         </Grid>
         <Grid item xs>
           <ItemDetailSelection onAddItem={onAddItem} onRemoveItem={onRemoveItem} order={order} items={selectedItems} />
