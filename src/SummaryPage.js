@@ -7,7 +7,7 @@ import Icon from 'material-ui/Icon'
 import map from 'lodash/map'
 import Typography from 'material-ui/Typography'
 import List, { ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
-import { totalRand } from './items'
+import { totalRand, reduceOrders } from './items'
 
 const styles = theme => {
   return {
@@ -39,14 +39,19 @@ export class SummaryPage extends React.Component {
   }
 
   render () {
-    const { classes, order, items, currentOrderIndex} = this.props
-    const emptyOrder = Object.keys(order).length < 1
-    const totalR = totalRand(order)
+    const { classes, order, items, summaryTitle} = this.props
+    let virtualOrder = order
+    if(Array.isArray(order)) {
+      virtualOrder = reduceOrders(order)
+    }
+
+    const emptyOrder = Object.keys(virtualOrder).length < 1
+    const totalR = totalRand(virtualOrder)
 
     return (
       <Paper className={classes.root}>
           <Typography type="title" >
-            Order #{currentOrderIndex}
+            {summaryTitle}
           </Typography>
           {emptyOrder ? (
             <Typography type="subheading" >
@@ -54,8 +59,7 @@ export class SummaryPage extends React.Component {
             </Typography>
           ) : (
             <List>
-              {map(order, (count, itemPath) => {
-
+              {map(virtualOrder, (count, itemPath) => {
                 if(!count)
                   return null
 

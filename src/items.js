@@ -1,5 +1,6 @@
 import isEqual from 'lodash/isEqual'
 import reduce from 'lodash/reduce'
+import assignWith from 'lodash/assignWith'
 import localData from './items.json'
 
 export var CODES = localData.CODES
@@ -60,5 +61,11 @@ export const countRootItems = (order, path) => {
   },0)
 }
 
+export const reduceOrders = (orders) => {
+  return orders.reduce((obj, o) => {
+    // Sum values
+    return assignWith(obj, o, (a,b) => (a || 0) + (b || 0))
+  }, {})
+}
 
 export default ensureItems

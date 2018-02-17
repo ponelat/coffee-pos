@@ -46,6 +46,10 @@ export class Topbar extends React.Component {
     this.handleClose()
   }
 
+  onShowTotalSummary = () => {
+    this.props.showTotalSummary()
+  }
+
   static propTypes = {
     classes: PropTypes.object.isRequired,
   };
@@ -86,6 +90,7 @@ export class Topbar extends React.Component {
                 onClose={this.handleClose}
                 >
                 <MenuItem onClick={this.onClearOrders}>Clear Orders</MenuItem>
+                <MenuItem onClick={this.onShowTotalSummary}>Summary</MenuItem>
               </Menu>
             </div>
             <Typography type="title" color="inherit" className={classes.flex} >

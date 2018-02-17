@@ -60,6 +60,7 @@ class App extends Component {
   }
 
   onPrevious = () => {
+    this.setState({showTotalSummary: false})
     if(this.state.summaryPage) {
       this.setState({summaryPage: false})
       return
@@ -73,7 +74,9 @@ class App extends Component {
   }
 
   onNext = () => {
+
     const { currentOrderIndex, summaryPage } = this.state
+    this.setState({showTotalSummary: false})
     if(!summaryPage) {
       this.setState({
         summaryPage: true
@@ -99,14 +102,16 @@ class App extends Component {
   onFirst = () => {
     this.setState({
       currentOrderIndex: 0,
-      summaryPage: false
+      summaryPage: false,
+      showTotalSummary: false
     })
   }
 
   onLast = () => {
     this.setState( state => ({
       currentOrderIndex: state.orders.length - 1,
-      summaryPage: false
+      summaryPage: false,
+      showTotalSummary: false
     }))
   }
 
@@ -152,12 +157,18 @@ class App extends Component {
   //   })
   // }
 
+  onShowTotalSummary = () => {
+    this.setState({
+      showTotalSummary: true
+    })
+  }
+
   sync = debounce(() => {
     saveOrders(this.state.orders)
   }, 1000)
 
   render() {
-    const { items, loadingItems, err, currentOrderIndex, orders, summaryPage } = this.state
+    const { items, loadingItems, err, currentOrderIndex, orders, summaryPage, showTotalSummary } = this.state
     const { classes } = this.props
 
     if(loadingItems || !items) {
@@ -179,11 +190,19 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <Reboot/>
-        <Topbar exportOrders={exportOrders} onClearOrders={this.onClearOrders} currentOrderIndex={currentOrderIndex} order={currentOrder} />
+        <Topbar
+          exportOrders={exportOrders}
+          onClearOrders={this.onClearOrders}
+          currentOrderIndex={currentOrderIndex}
+          order={currentOrder}
+          showTotalSummary={this.onShowTotalSummary}
+          />
         <Grid container direction="column" spacing={24}>
           <Grid item xs>
-            {summaryPage ? (
-              <SummaryPage order={currentOrder} currentOrderIndex={currentOrderIndex} items={items}/>
+            {showTotalSummary ? (
+              <SummaryPage order={orders} summaryTitle="Total" items={items}/>
+            ) : summaryPage ? (
+              <SummaryPage order={currentOrder} summaryTitle={'Order #' + currentOrderIndex} items={items}/>
             ) : (
               <ItemSelection onAddItem={this.onAddItem} onRemoveItem={this.onRemoveItem} order={currentOrder} items={items}/>
             )}
