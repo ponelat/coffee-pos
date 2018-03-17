@@ -16,7 +16,12 @@
     "Five": "Five Roses",
     "d": "Double-shot",
     "s": "Single-shot",
-    "BIG": "Big"
+    "BIG": "Big",
+    "CUP": "Cup",
+    "8OZ": "Regular 250ml",
+    "12OZ": "Large 350ml",
+    "14OZ": "Larger 400ml"
+
   },
   "items": [
     { "path": ["A"], "price": 1500 },
@@ -50,8 +55,8 @@
     { "path": ["T"], "price": 1500 },
     { "path": ["T", "BIG"], "price": 1800 },
     
-    { "path": ["CUP", "8oz"], "price": 199 },
-    { "path": ["CUP", "12oz"], "price": 210 },
-    { "path": ["CUP", "14oz"], "price": 220 }
+    { "path": ["CUP", "8OZ"], "price": 19900 },
+    { "path": ["CUP", "12OZ"], "price": 21000 },
+    { "path": ["CUP", "14OZ"], "price": 22000 }
   ]
 }
