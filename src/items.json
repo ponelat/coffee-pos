@@ -48,6 +48,10 @@
     { "path": ["Cc", "BIG"], "price": 3000 },
 
     { "path": ["T"], "price": 1500 },
-    { "path": ["T", "BIG"], "price": 1800 }
+    { "path": ["T", "BIG"], "price": 1800 },
+    
+    { "path": ["CUP", "8oz"], "price": 199 },
+    { "path": ["CUP", "12oz"], "price": 210 },
+    { "path": ["CUP", "14oz"], "price": 220 }
   ]
 }
