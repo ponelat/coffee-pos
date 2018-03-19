@@ -11,7 +11,7 @@ import MenuIcon from 'material-ui-icons/Menu'
 const styles = (theme) => ({
   root: {
     width: '100%',
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,
