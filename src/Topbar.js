@@ -47,6 +47,7 @@ export class Topbar extends React.Component {
   }
 
   onShowTotalSummary = () => {
+    this.handleClose()
     this.props.showTotalSummary()
   }
 
