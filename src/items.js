@@ -5,6 +5,8 @@ import localData from './items.json'
 
 export var CODES = localData.CODES
 export var Items = localData.items
+export var localItems = localData
+
 var fetchedRemoteItems = false
 
 export const ensureItems = () => {

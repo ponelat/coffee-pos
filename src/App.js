@@ -12,7 +12,7 @@ import Topbar from './Topbar.js'
 import Reboot from 'material-ui/Reboot'
 import Footer from './Footer.js'
 import SummaryPage from './SummaryPage.js'
-import {ensureItems} from './items'
+import {ensureItems, localItems} from './items'
 import {loadOrders,saveOrders,exportOrders, clearOrders} from './storage'
 
 function sumVals(obj) {
@@ -48,7 +48,7 @@ class App extends Component {
         this.setState({items: Items, loadingItems: false})
       })
       .catch(err => {
-        this.setState({ loadingItems: false, err: err+''})
+        this.setState({ items: localItems, loadingItems: false, err: err+''})
       })
 
   }
