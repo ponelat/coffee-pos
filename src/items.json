@@ -3,7 +3,7 @@
     "NORMAL": "Normal",
 
     "A": "Americano",
-    "C": "Cappucino",
+    "C": "Cappuccino",
     "L": "Latte",
     "E": "Espresso",
     "Fw": "Flat White",
@@ -11,6 +11,8 @@
     "Cc": "Chococcino",
     "ICE": "Ice Coffee",
     "T": "Tea",
+    "Cr": "Red Cappuccino",
+    "Cl": "Chai Latte",
 
     "Rooi": "Rooibos",
     "Five": "Five Roses",
@@ -57,6 +59,11 @@
     
     { "path": ["CUP", "8OZ"], "price": 19900 },
     { "path": ["CUP", "12OZ"], "price": 21000 },
-    { "path": ["CUP", "14OZ"], "price": 22000 }
-  ]
+    { "path": ["CUP", "14OZ"], "price": 22000 },
+
+    { "path": ["Cl"], "price": 2600 },    
+    { "path": ["Cl", "BIG"], "price": 3000 },
+    { "path": ["Cr"], "price": 2600 },
+    { "path": ["Cr", "BIG"], "price": 3000 }
+
 }
