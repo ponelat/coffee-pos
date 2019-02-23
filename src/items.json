@@ -65,5 +65,5 @@
     { "path": ["Cl", "BIG"], "price": 3000 },
     { "path": ["Cr"], "price": 2600 },
     { "path": ["Cr", "BIG"], "price": 3000 }
-
+  ]
 }
