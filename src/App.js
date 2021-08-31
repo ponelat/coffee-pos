@@ -39,17 +39,17 @@ class App extends Component {
       currentOrderIndex: orders.length,
       summaryPage: false,
       orders,
-      items: null,
-      loadingItems: true
+      items: localItems,
+      loadingItems: false,
     }
 
-    ensureItems()
-      .then(({ Items }) => {
-        this.setState({items: Items, loadingItems: false})
-      })
-      .catch(err => {
-        this.setState({ items: localItems, loadingItems: false, err: err+''})
-      })
+    // ensureItems()
+    //   .then(({ Items }) => {
+    //     this.setState({items: Items, loadingItems: false})
+    //   })
+    //   .catch(err => {
+    //     this.setState({ items: localItems, loadingItems: false, err: err+''})
+    //   })
 
   }
 
